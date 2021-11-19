@@ -12,17 +12,33 @@ function polygon(x, y, radius, npoints) {
 
 function setup() {
     shape = random(1,4);
-    Xsize = window.innerWidth;
-    Ysize = window.innerHeight;
+    Xsize = 1000;
+    Ysize = 1000;
     createCanvas(Xsize,Ysize);
     var sourceLine;
     var maskShape;
 
     var imgClone;
+
+    noLoop();
+    for(let x = 0; x < Xsize; x=x+9){
+        for(let y = 0; y < Ysize; y=y+9){
+            b=random(true,false);
+            if(b>=0.98){
+                r=random(0,100);
+            }else{
+                r=random(190,240);
+            }
+
+            noStroke();
+            fill(r, r, r+10,60);
+            rect(x,y,4,4);
+        }
+    }
 }
 
 function draw() { 
-
+    fill(255,255,255,0);
     noLoop();
     rectMode(CENTER)
     stroke(0,0,0);
@@ -109,7 +125,8 @@ function draw() {
     ( imgClone = sourceLine.get() ).mask( maskShape.get() );
     image(imgClone, 0, 0);
     
-    saveCanvas(canvas, "Gen");
+    
+    save("NFT")
     
 }
 
